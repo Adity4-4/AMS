@@ -20,15 +20,19 @@ var classrouter = require('./routes/classroom')
 
 var app = express();
 
-// mongoose.connect('mongodb://localhost:27017/attendance_portal',{useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(
+  'mongodb+srv://Aditya:Aditya%40200@cluster0.6bedcct.mongodb.net/attendance_portal?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+)
+.then(() => console.log("✅ MongoDB Atlas Connected"))
+.catch(err => console.log("❌ MongoDB Atlas Error:", err));
 
-// require('./config/passport');
+require('./config/passport');
 
-const dbUrl = process.env.MONGODB_URI; 
 
-mongoose.connect(dbUrl)
-  .then(() => console.log("Connected to MongoDB Atlas!"))
-  .catch((err) => console.log(err));
 
 const hbs=expressHbs.create({
   defaultLayout: 'layout',
