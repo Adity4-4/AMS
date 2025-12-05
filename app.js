@@ -24,6 +24,12 @@ mongoose.connect('mongodb://localhost:27017/attendance_portal',{useNewUrlParser:
 
 require('./config/passport');
 
+const dbUrl = process.env.MONGODB_URI; 
+
+mongoose.connect(dbUrl)
+  .then(() => console.log("Connected to MongoDB Atlas!"))
+  .catch((err) => console.log(err));
+
 const hbs=expressHbs.create({
   defaultLayout: 'layout',
   extname: '.hbs',
