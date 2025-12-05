@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 class MailSender {
   nodemailer;
   transporter;
@@ -17,10 +19,10 @@ class MailSender {
     // Mailtrap SMTP setup
     this.transporter = this.nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
-      port: 2525, // or 587, 465
+      port: process.env.MAIL_PORT, // or 587, 465
       auth: {
-        user: "ef6b438ae1972f", // Mailtrap SMTP username
-        pass: "3b69ebe2da89f3" // Mailtrap SMTP password
+        user: process.env.MAIL_USER, // Mailtrap SMTP username
+        pass: process.env.MAIL_PASS// Mailtrap SMTP password
       }
     });
 
